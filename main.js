@@ -11,6 +11,7 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
+var selectedUser = null; // Assuming you have a way to set the selected user
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -54,7 +55,9 @@ function sendMessage(event) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
-            type: 'CHAT'
+            type: 'CHAT',
+            messageFrom: username, // Set the messageFrom field
+            messageTo: selectedUser // Set the messageTo field (assuming it's the selected user)
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
