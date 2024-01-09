@@ -11,6 +11,7 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
+var selectedUser = null; // Assuming selectedUser is available in your code
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -50,11 +51,13 @@ function onError(error) {
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    if (messageContent && stompClient) {
+    if (messageContent && stompClient && selectedUser) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
-            type: 'CHAT'
+            type: 'CHAT',
+            messageFrom: username, // Set the messageFrom field
+            messageTo: selectedUser // Set the messageTo field (assuming it's the selected user)
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
@@ -102,5 +105,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+usernameForm.addEventListener('submit', connect, true);
+messageForm.addEventListener('submit', sendMessage, true);
