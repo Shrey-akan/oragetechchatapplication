@@ -1,17 +1,15 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Spring Boot WebSocket Chat Application</title>
-    <link rel="stylesheet" href="/main.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
 </head>
 
 <body>
-    <noscript>
-        <h2>Sorry! Your browser doesn't support Javascript</h2>
-    </noscript>
-
     <div id="username-page">
         <div class="username-page-container">
             <h1 class="title">Type your username</h1>
@@ -29,14 +27,12 @@
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="chat-header">
-                <h2>Orage Technologies Chat</h2>
+                <h2>Chat Application</h2>
             </div>
             <div class="connecting">
                 Connecting...
             </div>
-            <ul id="messageArea">
-
-            </ul>
+            <ul id="messageArea"></ul>
             <form id="messageForm" name="messageForm">
                 <div class="form-group">
                     <div class="input-group clearfix">
