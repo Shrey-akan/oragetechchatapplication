@@ -7,11 +7,11 @@ var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
-var connectingElement = document.querySelector('#connectingElement'); // Fix the selector
+var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
-var selectedUser = null;
+var selectedUser = null; // Assuming you have a way to set the selected user
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -51,20 +51,16 @@ function onError(error) {
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    if (messageContent && stompClient && selectedUser) {
+    if (messageContent && stompClient) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
             type: 'CHAT',
-            messageFrom: username,
-            messageTo: selectedUser
+            messageFrom: username, // Set the messageFrom field
+            messageTo: selectedUser // Set the messageTo field (assuming it's the selected user)
         };
-        try {
-            stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-            messageInput.value = '';
-        } catch (error) {
-            console.error('Error sending message:', error);
-        }
+        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        messageInput.value = '';
     }
     event.preventDefault();
 }
@@ -107,11 +103,6 @@ function getAvatarColor(messageSender) {
     }
     var index = Math.abs(hash % colors.length);
     return colors[index];
-}
-
-// Assuming you have a way to set the selected user, for example, when a user is clicked in the UI
-function setSelectedUser(user) {
-    selectedUser = user;
 }
 
 usernameForm.addEventListener('submit', connect, true);
