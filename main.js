@@ -7,7 +7,7 @@ var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
-var connectingElement = document.querySelector('#connectingElement');
+var connectingElement = document.querySelector('#connectingElement'); // Fix the selector
 
 var stompClient = null;
 var username = null;
@@ -68,7 +68,6 @@ function sendMessage(event) {
     }
     event.preventDefault();
 }
-
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
