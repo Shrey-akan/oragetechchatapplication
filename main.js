@@ -59,11 +59,16 @@ function sendMessage(event) {
             messageFrom: username,
             messageTo: selectedUser
         };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-        messageInput.value = '';
+        try {
+            stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+            messageInput.value = '';
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
     }
     event.preventDefault();
 }
+
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
