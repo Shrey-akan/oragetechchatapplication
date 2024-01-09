@@ -24,19 +24,13 @@ function connect(event) {
     if (username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
-        setSelectedUser(username);
+        console.log(username);
         var socket = new SockJS('https://job4jobless.com:9001/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
     }
     event.preventDefault();
-}
-function setSelectedUser(user) {
-    selectedUser = user;
-    console.log('Selected User:', selectedUser);
-
-    // If needed, perform additional actions when a user is selected
 }
 
 function onConnected() {
