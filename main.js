@@ -24,7 +24,7 @@ function connect(event) {
         chatPage.classList.remove('hidden');
 
         // var socket = new SockJS('/ws');
-        var socket = new SockJS('http://127.0.0.1:9001/ws');
+        var socket = new SockJS('https://job4jobless.com:9001/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
