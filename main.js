@@ -57,7 +57,7 @@ function sendMessage(event) {
             content: messageInput.value,
             type: 'CHAT',
             messageFrom: username,
-            messageTo: selectedUser
+            messageTo: selectedUser // Set the selected user as the messageTo
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
